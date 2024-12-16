@@ -1,107 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soft UI Welcome Widget</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #f5f7fa;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Widget</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0; /* Remove default body margins */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full viewport height */
+            background: linear-gradient(to bottom right, #e0eafc, #cfdef3); /* Subtle gradient background */
+        }
 
-    #welcome-widget {
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      width: 400px;
-      text-align: center;
-    }
+        .widget-container {
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white background */
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Softer shadow */
+            padding: 32px;
+            text-align: center;
+            max-width: 400px; /* Limit width for better responsiveness */
+            backdrop-filter: blur(5px); /* Subtle glassmorphism effect (optional) */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle border */
+        }
 
-    #welcome-message {
-      font-size: 1.8em;
-      color: #333;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
+        .widget-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #333; /* Darker text color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+        }
 
-    #current-date {
-      font-size: 1.2em;
-      color: #777;
-      margin-bottom: 25px;
-    }
+        .widget-message {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 24px;
+            line-height: 1.6; /* Improved line spacing */
+        }
 
-    button {
-      background: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1em;
-      font-weight: 500;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 15px;
-    }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4285f4; /* Google Blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    button:hover {
-      background: #0056b3;
-      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-    }
-
-    .icon {
-      font-size: 3em;
-      color: #007bff;
-      margin-bottom: 20px;
-    }
-
-  </style>
+        .cta-button:hover {
+            background-color: #357ae8;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .widget-container {
+                padding: 20px;
+            }
+            .widget-title {
+                font-size: 1.5em;
+            }
+            .widget-message {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="welcome-widget">
-    <div class="icon">🌟</div>
-    <div id="welcome-message">Welcome!</div>
-    <div id="current-date"></div>
-    <button onclick="refreshGreeting()">Refresh Greeting</button>
-  </div>
 
-  <script>
-    function getGreeting() {
-      const now = new Date();
-      const hours = now.getHours();
-      let greeting;
+    <div class="widget-container">
+        <h1 class="widget-title">Welcome!</h1>
+        <p class="widget-message">Thanks for visiting my Notion page. Feel free to explore and learn more about me and my projects.</p>
+        <a href="https://www.your-website.com" class="cta-button" target="_blank">Visit My Website</a>
+    </div>
 
-      if (hours < 12) {
-        greeting = "Good Morning!";
-      } else if (hours >= 12 && hours < 17) {
-        greeting = "Good Afternoon!";
-      } else {
-        greeting = "Good Evening!";
-      }
-
-      return greeting;
-    }
-
-    function getFormattedDate() {
-      const now = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      return now.toLocaleDateString('en-US', options);
-    }
-
-    function refreshGreeting() {
-      document.getElementById('welcome-message').textContent = getGreeting();
-      document.getElementById('current-date').textContent = `Today is ${getFormattedDate()}`;
-    }
-
-    // Initialize widget content
-    refreshGreeting();
-  </script>
 </body>
 </html>
